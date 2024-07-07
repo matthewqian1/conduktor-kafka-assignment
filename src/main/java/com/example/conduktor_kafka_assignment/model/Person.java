@@ -3,8 +3,10 @@ package com.example.conduktor_kafka_assignment.model;
 import com.example.conduktor_kafka_assignment.model.Address;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -12,6 +14,8 @@ import java.util.List;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Person {
 
     @JsonProperty("_id")

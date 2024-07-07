@@ -46,7 +46,7 @@ public class TopicDataInitializer {
         try {
             publishDataFromFileToTopic("/" + dataFileName);
         } catch (IOException e) {
-            log.error("Error loading topic data from file {}", dataFileName);
+            log.error("Error loading topic data from file {}", dataFileName, e);
         }
     }
 
