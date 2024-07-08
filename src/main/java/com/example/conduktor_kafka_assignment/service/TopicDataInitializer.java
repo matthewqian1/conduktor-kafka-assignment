@@ -42,7 +42,7 @@ public class TopicDataInitializer {
 
     @PostConstruct
     public void init() {
-        recreateTopic(kafkaTopic, 1, 1);
+        recreateTopic(kafkaTopic, 3, 1);
         try {
             publishDataFromFileToTopic("/" + dataFileName);
         } catch (IOException e) {
