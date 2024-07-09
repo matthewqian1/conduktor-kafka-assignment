@@ -54,10 +54,12 @@ public class TopicDataInitializer {
         List<Person> persons = loadPersonsFromFile(filePath);
         for (Person person : persons) {
             kafkaTemplate.send(kafkaTopic, person);
+            log.info("Published to topic {}, data {}", kafkaTopic, person);
         }
     }
 
     private List<Person> loadPersonsFromFile(String filePath) throws IOException {
+        log.info("Parsing data from file {}", filePath);
         InputStream inputStream = TopicDataInitializer.class.getResourceAsStream(filePath);
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());

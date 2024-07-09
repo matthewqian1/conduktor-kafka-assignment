@@ -28,6 +28,7 @@ public class Controller {
             @RequestParam(value = "count", defaultValue = "10") int count) {
         return CompletableFuture.supplyAsync(() -> {
             try {
+                log.info("Received request to get {} messages from topic {} from offset {}", count, topicName, offset);
                 return kafkaMessageConsumerService.getMessages(topicName, offset, count);
             } catch (Exception e) {
                 log.error("Unexpected error occurred whilst getting messages for the following inputs: topicName {}, offset {}, count {}", topicName, offset, count, e);
