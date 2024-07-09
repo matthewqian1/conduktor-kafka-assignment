@@ -25,14 +25,13 @@ import java.util.stream.Collectors;
 public class KafkaMessageConsumerService {
 
     private final ExecutorService executorService = Executors.newFixedThreadPool(10);
-    private final Map<String, KafkaConsumer<String, Person>> consumerMap = new ConcurrentHashMap<>();
 
     @Autowired
     private ConsumerFactory<String, Person> consumerFactory;
 
     public List<Person> getMessages(String topic, int offset, int count) throws Exception {
         return executorService.submit(() -> {
-            KafkaConsumer<String, Person> consumer = consumerMap.computeIfAbsent(topic, t -> (KafkaConsumer<String, Person>) consumerFactory.createConsumer());
+            KafkaConsumer<String, Person> consumer = (KafkaConsumer<String, Person>) consumerFactory.createConsumer();
 
             //Read from all partitions for a given topic from the specified offset
             List<PartitionInfo> partitions = consumer.partitionsFor(topic);
